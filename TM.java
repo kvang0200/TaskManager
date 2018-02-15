@@ -208,38 +208,23 @@ public class TM{
                     }else{
                         TM temp = new TM();
                         temp.title = check[2];
-
                         TM current = taskNew;
-                        while(current.nextStart != null){
+                        while(current.nextStart != null && !(current.title.equals(temp.title))){
                             current = current.nextStart;
                         }
-                        current.nextStart = temp;
-                        taskCount++;
+                        if (!(current.title.equals(temp.title))){
+                            current.nextStart = temp;
+                            taskCount++;
+                        }
                     }
                 }
             }
-
-            TM dup = taskNew;
-            TM dup2 = taskNew;
-            while (dup2.nextStart != null){
-                while (dup.nextStart != null) {
-                    if (dup.title.equals(dup2.title)) {
-                        dup.dupe = true;
-                    }
-                    dup = dup.nextStart;
-                }
-                dup2 = dup2.nextStart;
-            }
-
 
             for (int i = 0; i < taskCount; i++){
-               if(taskNew.dupe = true) {
-                   taskNew.dupe = false;
-                   argument[1] = taskNew.title;
-                   summaryTM(argument);
-                   System.out.println();
-                   taskNew = taskNew.nextStart;
-               }
+                argument[1] = taskNew.title;
+                summaryTM(argument);
+                System.out.println();
+                taskNew = taskNew.nextStart;
             }
         }
     }
