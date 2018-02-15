@@ -288,7 +288,7 @@ public class TM{
     }
 
     static void mainTM(String[] args) throws IOException{
-        if (args.length == 0 && !args[0].equals("summary")){
+        if (args.length == 0){
             System.out.println("Please use commands: start, stop, describe, size, or summary followed by a task name.");
         } else {
             switch (args[0]) {
