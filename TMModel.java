@@ -1,6 +1,4 @@
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,6 +10,7 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class TMModel implements ITMModel {
 
+    private Write sendToFile = new Write();
     private LocalTime start;
     private LocalTime stop;
     private TMModel nextStop;
@@ -24,43 +23,32 @@ public class TMModel implements ITMModel {
         this.nextStop = null;
     }
 
-    private static void writeToFile(String[] textLine){   // found and used on website -- http://www.homeandlearn.co.uk/java/write_to_textfile.html
-           try {
-               FileWriter FW = new FileWriter("log.txt", true);
-               PrintWriter writer = new PrintWriter(FW);
-               writer.printf("%s" + "%n", textLine);
-               writer.close();
-           }
-           catch (IOException IOE){
-           }
-    }
-
     public boolean startTask(String name){
         LocalTime time = LocalTime.now();
         System.out.println(name + " has been started.");
         String[] starts = {":START: " + time.toString() + " "+ name};
-        writeToFile(starts);
+        sendToFile.writeToFile(starts);
         return true;
     }
 
     public boolean stopTask(String name){
         LocalTime time = LocalTime.now();
         System.out.println(name + " has been stopped.");
-        String[] starts = {":STOP: " + time.toString() + " "+ name};
-        writeToFile(starts);
+        String[] stops = {":STOP: " + time.toString() + " "+ name};
+        sendToFile.writeToFile(stops);
         return true;
     }
 
     public boolean describeTask(String name, String description) {
         String[] describes = {":DESCRIBE: " + name + " "  + description};
-        writeToFile(describes);
+        sendToFile.writeToFile(describes);
         return true;
     }
 
     public boolean describeTask(String name, String description, String size){
         sizeTask(name,size);
         String[] describes = {":DESCRIBE: " + name + " "  + description};
-        writeToFile(describes);
+        sendToFile.writeToFile(describes);
         return true;
     }
 
@@ -74,7 +62,7 @@ public class TMModel implements ITMModel {
         }
         if (flag){
             String[] sizeTM = {":SIZE: " + name + " " + size};
-            writeToFile(sizeTM);
+            sendToFile.writeToFile(sizeTM);
         } else {
             System.out.println("Please use XS, S, M, L, or XL for sizing.");
         }
@@ -83,7 +71,7 @@ public class TMModel implements ITMModel {
 
     public boolean deleteTask(String name) {
         String[] deletes = {":DELETE: " + name};
-        writeToFile(deletes);
+        sendToFile.writeToFile(deletes);
         return true;
     }
 
@@ -115,14 +103,14 @@ public class TMModel implements ITMModel {
             }
             for (String s : timeStart){
                 String[] startTime = {":START: " + s + " "+ newName};
-                writeToFile(startTime);
+                sendToFile.writeToFile(startTime);
             }
             for (String s : timeStop){
                 String[] stopTime = {":STOP: " + s + " "+ newName};
-                writeToFile(stopTime);
+                sendToFile.writeToFile(stopTime);
             }
-            writeToFile(sizeTM);
-            writeToFile(describes);
+            sendToFile.writeToFile(sizeTM);
+            sendToFile.writeToFile(describes);
             deleteTask(oldName);
             return true;
 
@@ -208,7 +196,9 @@ public class TMModel implements ITMModel {
                 System.out.println("Please stop the task: " + name);
             } else {
                 for (int i = 0; i < beginCount; i++){
-                    timeTM = timeTM + timeOne.until(timeTwo, MINUTES);
+                    timeTM = timeTM + begin.start.until(end.stop, MINUTES);
+                    begin = begin.nextStart;
+                    end = end.nextStop;
                 }
             }
             return String.valueOf(timeTM);
