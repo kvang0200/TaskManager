@@ -1,3 +1,38 @@
+commit 2464470dbcd3260d0ea1c896d42d4c9500925124
+Author: kvang0200 <kvang0900@gmail.com>
+Date:   Wed Mar 7 00:00:02 2018 -0800
+
+            modified:   TMModel.java
+            new file:   Write.java
+
+commit 0fa57e8fc074204ac7e7dd46ff83cb82a02d9bbd
+Author: kvang0200 <kvang0900@gmail.com>
+Date:   Tue Mar 6 23:35:51 2018 -0800
+
+            modified:   ITMModel.java
+            modified:   TM.java
+            modified:   TMModel.java
+
+commit 97190e13d47c996d4df5be6073d31533a6bce77d
+Author: kvang0200 <kvang0900@gmail.com>
+Date:   Sun Mar 4 23:19:38 2018 -0800
+
+            new file:   ITMModel.java
+            deleted:    TMI.java
+            new file:   TMModel.java
+
+commit 4cfaf2af38fe0d96d8d033304432ec3b7f77b884
+Author: kvang0200 <kvang0900@gmail.com>
+Date:   Wed Feb 28 09:02:19 2018 -0800
+
+    This is a test
+
+commit 3e01315c3b89b2406a40698228b8d3eeee28ab6a
+Author: kvang0200 <kvang0900@gmail.com>
+Date:   Wed Feb 21 10:11:11 2018 -0800
+
+            modified:   git.log
+
 commit a2745dc77abccbe005bbcd5b0eef0f0a71cf94ad
 Author: Kevin Vang <sharp0900@gmail.com>
 Date:   Wed Feb 14 18:13:49 2018 -0800
