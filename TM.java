@@ -24,6 +24,8 @@ public class TM{
                 System.out.println("Average time for size " + s + ": " + ModelTm.avgTimeForSize(s));
                 System.out.println("===============================================================");
             }
+        }
+        for (String s : Sizes){
             System.out.println("All tasks with size " + s + ": " + ModelTm.taskNamesForSize(s));
         }
         System.out.println("All Task Sizes: " + ModelTm.taskSizes());
